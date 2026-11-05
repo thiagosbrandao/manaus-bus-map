@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Mapa 3D interativo de Manaus com linhas de ônibus e preparação para posições ao vivo." />
+  <title>Manaus em movimento · mapa 3D</title>
+  <link rel="preconnect" href="https://unpkg.com" />
+  <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <div>
+        <p class="intro-note">Manaus, central de transporte</p>
+        <h1>Veja a cidade em movimento.</h1>
+        <p class="lede">Explore as linhas de ônibus em 3D e acompanhe os veículos que estão transmitindo GPS agora.</p>
+      </div>
+      <div class="hero-meta"><span class="pulse"></span><span id="apiState">Conectando à API</span></div>
+    </section>
+
+    <section class="workspace">
+      <aside class="panel">
+        <div class="panel-heading"><div><span class="panel-title">Explorar</span><span class="panel-subtitle">Escolha uma linha para começar</span></div><span class="live-pill">Conectado</span></div>
+        <label class="field-label" for="routeSelect">Linha de ônibus</label>
+        <select id="routeSelect"><option value="">Todas as linhas</option></select>
+        <label class="field-label" for="directionSelect">Sentido</label>
+        <select id="directionSelect" disabled><option value="">Selecione uma linha</option></select>
+        <button id="centerButton" class="primary"><span>Centralizar em Manaus</span><span aria-hidden="true">↗</span></button>
+        <div class="stats">
+          <div><strong id="routeCount">…</strong><span>linhas disponíveis</span></div>
+          <div><strong id="busCount">0</strong><span>posições ao vivo</span></div>
+        </div>
+        <div class="divider"></div>
+        <div class="legend">
+          <div><span class="dot bus"></span><span>Ônibus com sinal</span></div>
+          <div><span class="dot demo"></span><span>Marcador de demonstração</span></div>
+        </div>
+        <p class="note">Dados públicos do projeto <code>466</code> (Sinetram/Mobilibus), atualizados automaticamente a cada 20 segundos.</p>
+      </aside>
+      <div class="map-wrap">
+        <div id="map" aria-label="Mapa 3D de Manaus"></div>
+        <div class="map-chip"><span class="chip-dot"></span><span>Manaus, AM</span><span class="map-chip-divider"></span><span class="muted">perspectiva 3D</span></div>
+        <div class="map-controls"><button id="pitchButton" title="Alternar perspectiva">3D</button><button id="locateButton" title="Voltar para Manaus">⌖</button></div>
+      </div>
+    </section>
+    <footer><span>Mapa base © OpenFreeMap · dados de linhas © Mobilibus/Sinetram</span><span id="lastUpdate">Aguardando atualização</span></footer>
+  </main>
+  <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
